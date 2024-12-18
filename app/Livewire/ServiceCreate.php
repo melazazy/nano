@@ -38,10 +38,6 @@ class ServiceCreate extends Component
     public function loadService($id)
     {
         $service = Service::findOrFail($id);
-        // convert title_en text to array
-        // $this->title_en = explode(',', $service->title_en);
-        // $this->title_en = $service->title_en;
-        // dd($this->title_en);
         $this->en_name = $service->en_name;
         $this->en_description = $service->en_description;
         $this->ar_name = $service->ar_name;
@@ -162,6 +158,11 @@ class ServiceCreate extends Component
                     'title_ar' => implode(',', $this->title_ar), // Store Arabic titles
                 ]);
                 session()->flash('message', 'Service created successfully.');
+                // Reset form
+            $this->reset();
+            $this->image = null;
+
+            return redirect()->route('create.service');
             }
 
             Log::channel('stderr')->info('Service Saved', [

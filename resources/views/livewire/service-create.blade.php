@@ -17,12 +17,9 @@
                     {{ session('error') }}
                 </div>
             @endif
-
             <form
                 action="{{ $serviceId ? route('services.edit', ['locale' => app()->getLocale(), 'id' => $serviceId]) : route('create.service', ['locale' => app()->getLocale()]) }}"
                 wire:submit.prevent="save" class="mt-4">
-                {{-- show data come from livewire using dd() function --}}
-                    {{-- @dd($this); --}}
 
                 <!-- Service Name -->
                 <div class="form-group mb-4">
@@ -38,12 +35,12 @@
                             </svg>
                         </span>
                         <input id="en_name" type="text" wire:model="en_name"
-                            class="form-control rounded @error('en_name') is-invalid @enderror"
+                            class="form-control rounded"
                             placeholder="{{ __('messages.enter_english_name') }}" required aria-describedby="en_nameError"
                             maxlength="255">
                     </div>
                     @error('en_name')
-                        <div id="en_nameError" class="invalid-feedback">{{ $message }}</div>
+                        <div id="en_nameError" class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -110,7 +107,7 @@
                             maxlength="1000"></textarea>
                     </div>
                     @error('ar_description')
-                        <div id="ar_descriptionError" class="invalid-feedback">{{ $message }}</div>
+                        <div id="ar_descriptionError" class="invalid-feedback d-block">{{ $message }}</div>
                     @enderror
                 </div>
 
@@ -200,7 +197,7 @@
                 <!-- Submit Button -->
                 <div class="d-grid">
                     <button type="submit" wire:loading.attr="disabled" class="btn btn-primary"
-                        :disabled="!isFormValid">
+                        >
                         <span wire:loading.remove>
                             {{ $serviceId ? __('messages.update_service') : __('messages.create_service') }}
                         </span>
