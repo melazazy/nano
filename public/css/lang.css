@@ -1,0 +1,50 @@
+/* Custom RTL Overrides */
+@import url('https://fonts.googleapis.com/css2?family=SUSE&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+
+*[dir="rtl"] {
+    font-family: 'Cairo', sans-serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+    /* import arabic font   */
+}
+
+*[dir="rtl"] #sidebarMenu {
+    right: 0 !important;
+}
+*[dir="rtl"] .content {
+    margin-right: 260px !important;
+    margin-left: 30px !important;
+}
+*[dir="ltr"] {
+    font-family: 'SUSE', sans-serif !important;
+    direction: ltr !important;
+    text-align: left !important;
+    /* import english font   */
+}
+body[dir="ltr"] .hero_title p {
+    text-align: left !important;
+}
+/* mobile responsive */
+@media (max-width: 768px) {
+    *[dir="rtl"] .content {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        padding: 0 !important;
+    }
+    /* padding for card and table and other elements at once */
+    *[dir="rtl"] .card {
+        padding: 0 !important;
+    }
+    *[dir="rtl"] .table {
+        padding: 0 !important;
+    }
+    *[dir="rtl"] .card-body {
+        padding: 0 !important;
+        }
+
+    *[dir="rtl"] .content .py-4 .bg-light {
+        padding: 0 !important;
+    }
+}
+/* end mobile responsive */

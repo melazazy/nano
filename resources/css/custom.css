@@ -1,0 +1,151 @@
+/* Custom styles for Creative Services */
+:root {
+    --primary-dark: #1f2937;
+    --primary-red: #fb503b;
+    --secondary-red: #ff6b5b;
+    --light-gray: #f3f4f6;
+    --white: #ffffff;
+    --gradient: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+}
+body{
+
+}
+
+/* Hero Section Styles */
+.hero-section {
+    background-image: linear-gradient(rgba(31, 41, 55, 0.7), rgba(31, 41, 55, 0.8)),
+                    url('../../../public/assets/img/hero/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Services Section Styles */
+#services {
+    padding: 80px 0 60px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 20px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: var(--primary-red);
+}
+
+.service-card-wrapper {
+    @apply relative transform transition-transform duration-300 hover:-translate-y-2;
+}
+
+.service-card {
+    @apply transform transition-all duration-500 hover:-translate-y-2;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.service-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.service-card img {
+    @apply w-full h-48 object-cover transition-transform duration-300;
+}
+
+.service-card:hover img {
+    @apply transform scale-110;
+}
+
+.service-icon {
+    @apply absolute top-4 right-4 w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg z-10;
+    animation: float 3s ease-in-out infinite;
+}
+
+.service-icon i {
+    @apply text-2xl text-primary-red;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+/* .card{
+    @apply padding-40
+} */
+.card-body {
+    @apply p-6;
+}
+
+.card-title {
+    @apply text-xl font-bold mb-3 text-gray-800;
+}
+
+.card-text {
+    @apply text-gray-600 mb-4;
+}
+
+.card-body .btn {
+    @apply inline-block px-6 py-2 rounded-full bg-gradient-to-r from-primary-red to-secondary-red text-white font-semibold
+           transition-all duration-300 hover:shadow-lg transform hover:-translate-y-0.5;
+}
+
+/* Stats Section */
+.stat-item {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    margin-bottom: 0.5rem;
+}
+
+/* Animation Classes */
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .service-card {
+        margin-bottom: 2rem;
+    }
+
+    .stat-item {
+        margin-bottom: 1rem;
+    }
+}

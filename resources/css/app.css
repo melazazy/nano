@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles */
+@layer base {
+    :root {
+        --primary-dark: #1f2937;
+        --primary-red: #fb503b;
+        --secondary-red: #ff6b5b;
+        --light-gray: #f3f4f6;
+        --white: #ffffff;
+        --gradient: linear-gradient(135deg, var(--primary-red), var(--secondary-red));
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        /* @apply  font-sans text-gray-800; */
+    }
+}
+
+@layer components {
+    .container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    /* Stats Section */
+    #stats {
+        background: linear-gradient(rgba(31, 41, 55, 0.95), rgba(31, 41, 55, 0.95)),
+                    url('https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+        background-size: cover;
+        background-position: center;
+        padding: 80px 0;
+        color: #ffffff;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--primary-red);
+        margin-bottom: 10px;
+    }
+
+    .stat-text {
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+
+    .btn-primary {
+        @apply bg-gradient-to-r from-primary-red to-secondary-red text-white font-semibold px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300;
+    }
+
+    .section-title {
+        @apply text-3xl md:text-4xl font-bold mb-4;
+    }
+
+    .text-primary-red {
+        color: var(--primary-red);
+    }
+
+    /* Navigation Styles */
+    .nav-link {
+        @apply text-white hover:text-primary-red transition-colors duration-300;
+    }
+
+    /* Services Section */
+    .service-card {
+        @apply bg-white rounded-lg p-6 shadow-lg relative overflow-hidden transform transition-all duration-500 hover:-translate-y-2;
+    }
+
+    .service-card::before {
+        content: '';
+        @apply absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-red to-secondary-red transform origin-left scale-x-0 transition-transform duration-300;
+    }
+
+    .service-card:hover::before {
+        @apply scale-x-100;
+    }
+
+    .service-icon {
+        @apply absolute top-4 right-4 w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-lg z-10;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .service-icon i {
+        @apply text-2xl text-primary-red;
+    }
+
+    .service-content {
+        @apply relative z-10;
+    }
+
+    .service-title {
+        @apply text-xl font-bold mb-2 text-gray-800;
+    }
+
+    .service-description {
+        @apply text-gray-600 leading-relaxed;
+    }
+
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    /* Hover Effects */
+    .service-card:hover {
+        @apply shadow-xl;
+        transform: translateY(-8px);
+    }
+
+    .service-card:hover .service-title {
+        @apply text-primary-red;
+    }
+}
