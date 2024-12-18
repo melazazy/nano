@@ -88,12 +88,20 @@ class StateUpdate extends Component
         ]);
 
         try {
-            // echo('Current Expiry Date before update: ' . $this->expiry_date);
 
             $this->request->status = $this->status;
             $this->request->price = $this->price;
             $this->request->expiry_date = Carbon::parse($this->expiry_date);
             $this->expiration_date = $this->expiry_date;
+            $newExpiryDate = Carbon::parse($this->expiry_date);
+
+            // Check if the expiry date has changed
+            if ($this->request->expiry_date !== $newExpiryDate) {
+                // $this->request->expiry_date = $newExpiryDate;
+                // Update the notification_sent column
+                $this->request->notification_sent = false;
+            }
+
 
             if ($this->request->save()) {
                 Log::info('Request Updated', [
