@@ -43,6 +43,6 @@ class DailyTaskController extends Controller
         }
 
         Log::info('Notifications sent for expiring requests.');
-        return response()->json(['message' => 'Notifications sent for expiring requests.']);
+        // return response()->json(['message' => 'Notifications sent for expiring requests.']);
     }
 }
