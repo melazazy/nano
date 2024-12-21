@@ -170,29 +170,33 @@
 
                     <!-- English File Titles -->
                     <div class="form-group mb-4">
-                        <label for="title_en" class="form-label">{{ __('messages.title_en') }} <span class="text-danger">*</span></label>
+                        {{-- <label for="title_en" class="form-label">{{ __('messages.title_en') }} <span class="text-danger">*</span></label> --}}
                         <div id="title_en_container">
                             @for ($i = 0; $i < $file_count; $i++)
+                            <div class="form-group mb-4">
                                 <input type="text" wire:model="title_en.{{ $i }}" class="form-control mb-2 rounded @error('title_en.' . $i) is-invalid @enderror" placeholder="{{ __('messages.enter_file_title_en') }}" required>
                                 @error('title_en.' . $i)
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            @endfor
-                        </div>
-                    </div>
-
-                    <!-- Arabic File Titles -->
-                    <div class="form-group mb-4">
-                        <label for="title_ar" class="form-label">{{ __('messages.title_ar') }} <span class="text-danger">*</span></label>
-                        <div id="title_ar_container">
-                            @for ($i = 0; $i < $file_count; $i++)
                                 <input type="text" wire:model="title_ar.{{ $i }}" class="form-control mb-2 rounded @error('title_ar.' . $i) is-invalid @enderror" placeholder="{{ __('messages.enter_file_title_ar') }}" required>
                                 @error('title_ar.' . $i)
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                            </div>
                             @endfor
+                        {{-- </div>
+
+                        <label for="title_ar" class="form-label">{{ __('messages.title_ar') }} <span class="text-danger">*</span></label>
+                        <div id="title_ar_container"> --}}
+                            {{-- @for ($i = 0; $i < $file_count; $i++)
+                                
+                            @endfor --}}
                         </div>
                     </div>
+
+                    <!-- Arabic File Titles -->
+                    {{-- <div class="form-group mb-4">
+                    </div> --}}
 
                 <!-- Submit Button -->
                 <div class="d-grid">
