@@ -39,7 +39,7 @@ class ShowRequest extends Component
     public function updateRequest()
     {
 
-        dd('Updating');
+        // dd('Updating');
         $this->validate([
             'status' => 'required|in:pending,active,in_progress,completed,cancelled',
             'price' => 'nullable|numeric|min:0'

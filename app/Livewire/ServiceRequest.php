@@ -75,7 +75,7 @@ class ServiceRequest extends Component
         if ($this->documents) {
             $documents = is_array($this->documents) ? $this->documents : [$this->documents];
             // dd($documents);
-            foreach ($this->documents as $document) {
+            foreach ($this->documents as $index => $document) {
                 try {
                     // Retrieve user details
                     $userId = auth::user()->id;
@@ -84,7 +84,11 @@ class ServiceRequest extends Component
                     // Construct the new file name
                     $originalName = pathinfo($document->getClientOriginalName(), PATHINFO_FILENAME);
                     $extension = $document->getClientOriginalExtension();
-                    $newFileName = "{$originalName}_{$userId}_{$username}.{$extension}";
+                    // $newFileName = "{$this->title_en[0]}_{$originalName}_{$userId}_{$username}.{$extension}";
+
+
+                    $title = $this->title_en[$index] ?? 'Required_file_'.$index; // Fallback to 'default_title' if no title exists
+                    $newFileName = "{$title}_{$userId}_{$username}.{$extension}";
 
                     // Log file details for debugging
                     Log::info('Uploading Document', [

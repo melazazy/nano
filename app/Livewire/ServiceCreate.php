@@ -46,7 +46,7 @@ class ServiceCreate extends Component
         $this->status = $service->status;
         $this->existingImage = $service->image_url;
         $this->file_count = isset($service->file_count) ? $service->file_count : 0;
-        $this->title_en = isset($service->title_en) ? explode(',', $service->title_en): [];
+        $this->title_en = isset($service->title_en) ? explode(',', $service->title_en) : [];
         $this->title_ar = isset($service->title_ar) ? explode(',', $service->title_ar) : [];
     }
 
@@ -116,16 +116,16 @@ class ServiceCreate extends Component
                     'error' => $e->getMessage(),
                     'trace' => $e->getTraceAsString(),
                 ]);
-                if(app()->getLocale() == 'ar'){
+                if (app()->getLocale() == 'ar') {
                     session()->flash('error', 'فشل تحميل الصورة.');
-                }else{
+                } else {
                     session()->flash('error', 'Image upload failed: ' . $e->getMessage());
                 }
                 return back();
             }
         }
 
-       // Create or update service
+        // Create or update service
         try {
             if ($this->serviceId) {
                 // Update existing service
@@ -142,7 +142,17 @@ class ServiceCreate extends Component
                     'title_en' => implode(',', $this->title_en), // Store English titles
                     'title_ar' => implode(',', $this->title_ar), // Store Arabic titles
                 ]);
-                session()->flash('message', 'Service updated successfully.');
+
+                if (app()->getLocale() == 'ar') {
+                    session()->flash('message', 'تم تحديث الخدمة بنجاح');
+                } else {
+                    session()->flash('message', 'Service updated successfully.');
+                }
+                // Reset form
+                $this->reset();
+                $this->image = null;
+
+                return redirect()->route('create.service');
             } else {
                 // Create new service
                 $service = Service::create([
@@ -157,12 +167,17 @@ class ServiceCreate extends Component
                     'title_en' => implode(',', $this->title_en), // Store English titles
                     'title_ar' => implode(',', $this->title_ar), // Store Arabic titles
                 ]);
-                session()->flash('message', 'Service created successfully.');
-                // Reset form
-            $this->reset();
-            $this->image = null;
+                if (app()->getLocale() == 'ar') {
+                    session()->flash('message', 'تم إنشاء الخدمة بنجاح');
+                } else {
+                    session()->flash('message', 'Service created successfully.');
+                }
 
-            return redirect()->route('create.service');
+                // Reset form
+                $this->reset();
+                $this->image = null;
+
+                return redirect()->route('create.service');
             }
 
             Log::channel('stderr')->info('Service Saved', [
@@ -174,8 +189,11 @@ class ServiceCreate extends Component
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString(),
             ]);
-
-            session()->flash('error', 'Failed to save service: ' . $e->getMessage());
+            if (app()->getLocale() == 'ar') {
+                session()->flash('error', 'فشل حفظ الخدمة.' . $e->getMessage());
+            } else {
+                session()->flash('error', 'Failed to save service: ' . $e->getMessage());
+            }
             return back();
         }
     }

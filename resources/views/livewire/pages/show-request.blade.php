@@ -324,7 +324,7 @@
                                 @foreach ($priceOfferDocuments as $document)
                                     <div class="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between">
                                         <div class="flex items-center space-x-4">
-                                            
+
                                             <div class="flex items-center space-x-2">
                                                 <a href="{{ Storage::url($document->file_url) }}" target="_blank"
                                                     class="btn btn-sm btn-outline-primary">
@@ -349,12 +349,28 @@
                             <div class="file-list space-y-2">
                                 {{-- @foreach ($request->service->files as $file) --}}
                                 @foreach ($documents as $document)
+                                    @php
+                                        $newNameArray = explode('_', basename($document));
+                                        $newname = '';
+                                        for ($i = 0; $i < count($newNameArray)-2; $i++) {
+                                            if ($i == 0) {
+                                                $newname .= $newNameArray[$i];
+                                            } else {
+                                                $newname .= '-' . $newNameArray[$i];
+                                            }
+                                        }
+                                    @endphp
+                                    {{-- {{ $newname }} --}}
+                                    {{-- {{ $filenameWithoutExtension = pathinfo(basename($document), PATHINFO_FILENAME); }} --}}
+                                    {{-- {{ $filenameWithoutExtension }} --}}
                                     <div class="flex items-center justify-between bg-gray-100 p-3 rounded-md">
 
                                         <a href="{{ url(asset('/storage/' . $document)) }}" target="_blank"
                                             class="btn btn-sm btn-download bg-blue-500 text-info px-3 py-1 rounded hover:bg-blue-600 transition-colors">
                                             <i class="fas fa-download mr-1"></i>
-                                            {{ __('messages.download') }}
+                                            {{-- {{ basename($document) }} --}}
+                                            {{ $newname }}
+                                            {{-- {{ __('messages.download') }}  --}}
                                         </a>
                                     </div>
                                 @endforeach
@@ -365,13 +381,13 @@
                     </div>
 
                 </div>
-                <div>
-                    <p class="text-center">
-                        <a href="{{ route('manage.requests') }}" class=" btn btn-primary ">
-                            {{ __('messages.back_to_requests') }}
-                        </a>
-                    </p>
-                </div>
+            </div>
+            <div>
+                <p class="text-center">
+                    <a href="{{ route('manage.requests') }}" class=" btn btn-primary ">
+                        {{ __('messages.back_to_requests') }}
+                    </a>
+                </p>
             </div>
         </div>
 

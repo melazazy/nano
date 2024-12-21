@@ -10,7 +10,6 @@
                     {{ __('messages.' . $request->status) }}
                 </div>
             </div>
-
             <!-- Request Information -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="card card-body border-0 shadow mb-4">
@@ -32,6 +31,7 @@
                             @endif
 
                         </div>
+                        
                         <div class="file-field">
                             <div class="d-flex justify-content-xl-center ms-xl-3">
                                 <div class="d-flex">
